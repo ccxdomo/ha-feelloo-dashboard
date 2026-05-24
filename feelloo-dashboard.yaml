@@ -27,7 +27,7 @@ views:
       - type: custom:auto-entities
         card:
           type: entities
-          title: 🐱 Chats Feelloo
+          title: 🐱 Chats
           state_color: true
         filter:
           include:
@@ -39,113 +39,72 @@ views:
       - type: custom:auto-entities
         card:
           type: entities
-          title: 🔋 Batteries
+          title: 🔋 Batteries & 📡 Signaux
           state_color: true
         filter:
           include:
             - domain: sensor
               integration: feelloo
-              entity_id: '*batterie*'
         sort:
           method: name
+        exclude:
+          - entity_id: '*activite*'
+          - entity_id: '*repos*'
+          - entity_id: '*calme*'
+          - entity_id: '*actif*'
+          - entity_id: '*sorties*'
+          - entity_id: '*hebdo*'
+          - entity_id: '*mensuel*'
+          - entity_id: '*latitude*'
+          - entity_id: '*longitude*'
+          - entity_id: '*gps*'
+          - entity_id: '*last_seen*'
+          - entity_id: '*presence*'
 
       - type: custom:auto-entities
         card:
           type: entities
-          title: 📡 Signal
+          title: 📊 Activités & Sorties
           state_color: true
         filter:
           include:
             - domain: sensor
               integration: feelloo
-              entity_id: '*signal*'
         sort:
           method: name
+        exclude:
+          - entity_id: '*batterie*'
+          - entity_id: '*signal*'
+          - entity_id: '*latitude*'
+          - entity_id: '*longitude*'
+          - entity_id: '*gps*'
+          - entity_id: '*last_seen*'
+          - entity_id: '*presence*'
 
       - type: custom:auto-entities
         card:
           type: entities
-          title: 📍 Présence
+          title: 📍 Présence & ⚠️ Alertes
           state_color: true
         filter:
           include:
             - domain: binary_sensor
               integration: feelloo
-              entity_id: '*maison*'
         sort:
           method: name
 
       - type: custom:auto-entities
         card:
           type: entities
-          title: 🐭 Petite Souris
+          title: 🐭 Petite Souris & 🔔 Actions
           state_color: true
         filter:
           include:
             - domain: switch
               integration: feelloo
-              entity_id: '*petite_souris*'
             - domain: number
               integration: feelloo
-              entity_id: '*duree*'
-        sort:
-          method: name
-
-      - type: custom:auto-entities
-        card:
-          type: entities
-          title: 🔔 Actions
-          state_color: true
-        filter:
-          include:
             - domain: button
               integration: feelloo
-              entity_id: '*sonner*'
-        sort:
-          method: name
-
-      - type: custom:auto-entities
-        card:
-          type: entities
-          title: 📊 Activité
-          state_color: true
-        filter:
-          include:
-            - domain: sensor
-              entity_id: '*_name_activite*'
-            - domain: sensor
-              entity_id: '*_name_repos*'
-            - domain: sensor
-              entity_id: '*_name_calme*'
-            - domain: sensor
-              entity_id: '*_name_actif*'
-            - domain: sensor
-              entity_id: '*_nombre_de_sorties*'
-            - domain: sensor
-              entity_id: '*_repos_hebdo*'
-            - domain: sensor
-              entity_id: '*_calme_hebdo*'
-            - domain: sensor
-              entity_id: '*_actif_hebdo*'
-            - domain: sensor
-              entity_id: '*_repos_mensuel*'
-            - domain: sensor
-              entity_id: '*_actif_mensuel*'
-        sort:
-          method: name
-
-      - type: custom:auto-entities
-        card:
-          type: entities
-          title: ⚠️ Alertes
-          state_color: true
-        filter:
-          include:
-            - domain: binary_sensor
-              entity_id: '*_name_en_charge*'
-            - domain: binary_sensor
-              entity_id: '*_name_batterie_faible*'
-            - domain: binary_sensor
-              entity_id: '*_name_gateway_en_ligne*'
         sort:
           method: name
