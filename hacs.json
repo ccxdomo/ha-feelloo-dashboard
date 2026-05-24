@@ -1,0 +1,8 @@
+{
+  "name": "Feelloo Dashboard",
+  "content_in_root": false,
+  "filename": "feelloo-dashboard.yaml",
+  "country": ["FR"],
+  "homeassistant": "2024.1.0",
+  "render_readme": true
+}
