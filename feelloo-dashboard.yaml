@@ -1,149 +1,34 @@
 title: Feelloo
 views:
-  - title: Chats
-    path: chats
-    icon: mdi:cat
-    type: panel
+  - title: Carte
+    path: map
+    icon: mdi:map-marker-radius
+    badges: []
     cards:
-      - type: custom:stack-in-card
-        mode: vertical
+      - type: map
+        entities:
+          - entity: all
+        aspect_ratio: '16:9'
+        default_zoom: 18
+        hours_to_show: 24
         card_mod:
           style: |
             ha-card {
-              background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,152,0,0.12) 0%, transparent 55%), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,167,38,0.06) 0%, transparent 50%), linear-gradient(180deg, #0a0a0f 0%, #111118 50%, #0d0d12 100%) !important;
-              border: none !important;
-              min-height: 100vh;
-              padding: 20px;
+              border-radius: 24px !important;
+              border: 1px solid var(--divider-color) !important;
+              overflow: hidden !important;
             }
-        cards:
-          - type: custom:button-card
-            name: 🐱 Feelloo
-            label: Localisation & Activité
-            show_name: true
-            show_label: true
-            show_icon: false
-            show_state: false
-            styles:
-              card:
-                - background: none
-                - border: none
-                - box-shadow: none
-                - padding: 0 0 20px 0
-              name:
-                - font-size: 28px
-                - font-weight: 700
-                - letter-spacing: '-0.5px'
-                - color: white
-                - text-align: left
-              label:
-                - font-size: 13px
-                - color: rgba(255,255,255,0.5)
-                - font-weight: 500
-                - letter-spacing: 0.5px
-                - text-transform: uppercase
-                - text-align: left
-                - margin-top: 4px
 
-          - type: custom:auto-entities
-            card:
-              type: map
-              aspect_ratio: '16:9'
-              default_zoom: 18
-            card_param: entities
-            filter:
-              include:
-                - domain: device_tracker
-                  integration: feelloo
-            sort:
-              method: name
-            card_mod:
-              style: |
-                ha-card {
-                  border-radius: 24px !important;
-                  border: 1px solid rgba(255,152,0,0.2) !important;
-                  overflow: hidden !important;
-                  margin-bottom: 16px !important;
-                }
-
-          - type: custom:auto-entities
-            card:
-              type: grid
-              columns: 1
-              square: false
-            card_param: cards
-            filter:
-              include:
-                - domain: device_tracker
-                  integration: feelloo
-                  options:
-                    type: custom:button-card
-                    entity: this
-                    show_name: true
-                    show_icon: false
-                    show_state: false
-                    card_mod:
-                      style: |
-                        ha-card {
-                          background: linear-gradient(135deg, rgba(255,152,0,0.12) 0%, rgba(255,167,38,0.04) 100%) !important;
-                          border-radius: 24px !important;
-                          border: 1px solid rgba(255,152,0,0.2) !important;
-                          margin-bottom: 16px !important;
-                        }
-                    styles:
-                      card:
-                        - padding: 20px
-                      name:
-                        - font-size: 16px
-                        - font-weight: 700
-                        - color: '#FFA726'
-                        - margin-bottom: 12px
-                        - text-align: left
-                    custom_fields:
-                      info: |
-                        [[[
-                          var name = entity.attributes.friendly_name || '';
-                          var slug = name.toLowerCase().replace(/\s+/g, '_');
-                          var bat = states['sensor.' + slug + '_name_batterie'];
-                          var signal = states['sensor.' + slug + '_force_du_signal'];
-                          var home = states['binary_sensor.' + slug + '_name_a_la_maison'];
-                          var charging = states['binary_sensor.' + slug + '_name_en_charge'];
-                          var lowBat = states['binary_sensor.' + slug + '_name_batterie_faible'];
-                          var html = '<div style="display:flex;gap:8px;flex-wrap:wrap;">';
-                          if (bat) html += '<span style="padding:4px 10px;background:rgba(255,255,255,0.06);border-radius:10px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);">🔋 ' + bat.state + '%</span>';
-                          if (signal) html += '<span style="padding:4px 10px;background:rgba(255,255,255,0.06);border-radius:10px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);">📡 ' + signal.state + '%</span>';
-                          if (home && home.state === 'on') html += '<span style="padding:4px 10px;background:rgba(76,175,80,0.15);border-radius:10px;font-size:12px;font-weight:600;color:#4CAF50;">🏠 Home</span>';
-                          if (home && home.state === 'off') html += '<span style="padding:4px 10px;background:rgba(255,23,68,0.15);border-radius:10px;font-size:12px;font-weight:600;color:#FF1744;">🚶 Away</span>';
-                          if (charging && charging.state === 'on') html += '<span style="padding:4px 10px;background:rgba(255,167,38,0.15);border-radius:10px;font-size:12px;font-weight:600;color:#FFA726;">⚡ Charging</span>';
-                          if (lowBat && lowBat.state === 'on') html += '<span style="padding:4px 10px;background:rgba(255,23,68,0.15);border-radius:10px;font-size:12px;font-weight:600;color:#FF1744;">🪫 Low Battery</span>';
-                          html += '</div>';
-                          return html;
-                        ]]]
-                      actions: |
-                        [[[
-                          var name = entity.attributes.friendly_name || '';
-                          var slug = name.toLowerCase().replace(/\s+/g, '_');
-                          var switchEntity = 'switch.' + slug + '_petite_souris';
-                          var buttonEntity = 'button.' + slug + '_name_faire_sonner';
-                          var html = '<div style="display:flex;gap:8px;margin-top:12px;">';
-                          html += '<a href="#" onclick="event.preventDefault();document.querySelector(\'ha-more-info-dialog\').showDialog({entityId:\'' + switchEntity + '\'});" style="flex:1;padding:10px;background:rgba(255,255,255,0.06);border-radius:12px;text-align:center;text-decoration:none;">';
-                          html += '<div style="font-size:20px;margin-bottom:4px;">🐭</div><div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);">Petite Souris</div></a>';
-                          html += '<a href="#" onclick="event.preventDefault();document.querySelector(\'ha-more-info-dialog\').showDialog({entityId:\'' + buttonEntity + '\'});" style="flex:1;padding:10px;background:rgba(255,255,255,0.06);border-radius:12px;text-align:center;text-decoration:none;">';
-                          html += '<div style="font-size:20px;margin-bottom:4px;">🔔</div><div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);">Sonner</div></a>';
-                          html += '</div>';
-                          return html;
-                        ]]]
-            sort:
-              method: name
-              numeric: false
-
-  - title: Réglages
-    path: settings
-    icon: mdi:cog
+  - title: Chats
+    path: cats
+    icon: mdi:cat
+    badges: []
     cards:
       - type: custom:auto-entities
         card:
           type: entities
           title: 🐱 Chats Feelloo
+          state_color: true
         filter:
           include:
             - domain: device_tracker
@@ -155,48 +40,75 @@ views:
         card:
           type: entities
           title: 🔋 Batteries
+          state_color: true
         filter:
           include:
             - domain: sensor
               integration: feelloo
-              attributes:
-                device_class: battery
+              entity_id: '*batterie*'
+        sort:
+          method: name
 
       - type: custom:auto-entities
         card:
           type: entities
-          title: 📡 Signaux
+          title: 📡 Signal
+          state_color: true
         filter:
           include:
             - domain: sensor
               integration: feelloo
-              entity_id: '*force_du_signal*'
+              entity_id: '*signal*'
+        sort:
+          method: name
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: 📍 Présence
+          state_color: true
+        filter:
+          include:
+            - domain: binary_sensor
+              integration: feelloo
+              entity_id: '*maison*'
+        sort:
+          method: name
 
       - type: custom:auto-entities
         card:
           type: entities
           title: 🐭 Petite Souris
+          state_color: true
         filter:
           include:
             - domain: switch
               integration: feelloo
+              entity_id: '*petite_souris*'
             - domain: number
               integration: feelloo
               entity_id: '*duree*'
+        sort:
+          method: name
 
       - type: custom:auto-entities
         card:
           type: entities
           title: 🔔 Actions
+          state_color: true
         filter:
           include:
             - domain: button
               integration: feelloo
+              entity_id: '*sonner*'
+        sort:
+          method: name
 
       - type: custom:auto-entities
         card:
           type: entities
           title: 📊 Activité
+          state_color: true
         filter:
           include:
             - domain: sensor
@@ -207,3 +119,21 @@ views:
                 - '*calme*'
                 - '*actif*'
                 - '*sorties*'
+        sort:
+          method: name
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: ⚠️ Alertes
+          state_color: true
+        filter:
+          include:
+            - domain: binary_sensor
+              integration: feelloo
+              entity_id:
+                - '*charge*'
+                - '*batterie_faible*'
+                - '*gateway*'
+        sort:
+          method: name
