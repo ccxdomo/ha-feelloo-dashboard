@@ -6,7 +6,7 @@ views:
     badges: []
     cards:
       - type: map
-        aspect_ratio: '16:9'
+        aspect_ratio: '1:1'
         default_zoom: 18
         hours_to_show: 24
         entities:
