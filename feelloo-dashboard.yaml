@@ -112,19 +112,14 @@ views:
         filter:
           include:
             - domain: sensor
-              integration: feelloo
               entity_id: '*activite*'
             - domain: sensor
-              integration: feelloo
               entity_id: '*repos*'
             - domain: sensor
-              integration: feelloo
               entity_id: '*calme*'
             - domain: sensor
-              integration: feelloo
               entity_id: '*actif*'
             - domain: sensor
-              integration: feelloo
               entity_id: '*sorties*'
         sort:
           method: name
@@ -137,13 +132,10 @@ views:
         filter:
           include:
             - domain: binary_sensor
-              integration: feelloo
               entity_id: '*charge*'
             - domain: binary_sensor
-              integration: feelloo
               entity_id: '*batterie_faible*'
             - domain: binary_sensor
-              integration: feelloo
               entity_id: '*gateway*'
         sort:
           method: name
