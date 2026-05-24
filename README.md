@@ -23,51 +23,54 @@ Beautiful dashboard for [Feelloo](https://feelloo.com) cat trackers in Home Assi
 
 ## Prerequisites
 
+### Required Integration
+
 You need the [Feelloo integration](https://github.com/ccxdomo/ha-feelloo) installed and configured.
 
-### Required Cards
+### Required Custom Cards (MANDATORY)
 
-Install these custom cards via HACS before using this dashboard:
+**⚠️ The dashboard will NOT work without these cards installed.**
 
-1. **auto-entities** — `thomasloven/lovelace-auto-entities`
-2. **button-card** — `custom-cards/button-card`
-3. **card-mod** — `thomasloven/lovelace-card-mod`
-4. **stack-in-card** — `RomRider/lovelace-stack-in-card`
+Install via **HACS** → **Frontend** → **⋮** → **Custom repositories**:
+
+| Card | Repository | Purpose |
+|------|-----------|---------|
+| **auto-entities** | `thomasloven/lovelace-auto-entities` | Auto-discovery of all Feelloo entities |
+| **card-mod** | `thomasloven/lovelace-card-mod` | Styling (rounded corners, borders) |
+
+**After installing each card, restart Home Assistant.**
+
+### Verify Installation
+
+1. Go to **Developer Tools** → **States**
+2. Check that your Feelloo entities exist (e.g., `device_tracker.pinceau_name`)
+3. If entities are missing, the Feelloo integration is not configured correctly
 
 ## Installation
 
-### Via HACS (Recommended)
+### Step 1: Install Dependencies
 
-1. Open HACS in Home Assistant
-2. Go to **Frontend**
-3. Click the menu (⋮) and select **Custom repositories**
-4. Add `https://github.com/ccxdomo/ha-feelloo-dashboard`
-5. Select category **Dashboard**
-6. Click **Download**
+1. **HACS** → **Frontend** → **⋮** → **Custom repositories**
+2. Add `https://github.com/thomasloven/lovelace-auto-entities` (Category: **Lovelace**)
+3. Add `https://github.com/thomasloven/lovelace-card-mod` (Category: **Lovelace**)
+4. **Restart Home Assistant**
 
-### Manual
+### Step 2: Add the Dashboard
 
-1. Copy `feelloo-dashboard.yaml` to your Home Assistant configuration directory
-2. Add it as a new dashboard via the UI or `configuration.yaml`
+**Via HACS:**
+1. **HACS** → **Frontend** → **⋮** → **Custom repositories**
+2. Add `https://github.com/ccxdomo/ha-feelloo-dashboard`
+3. Select category **Dashboard**
+4. Click **Download**
 
-## Setup
-
-### Method 1: Add to an existing dashboard
-
-1. Go to your dashboard → **Edit Dashboard**
-2. Click **⋮** → **Raw configuration editor**
-3. Copy the contents of `feelloo-dashboard.yaml`
-4. Paste it into the editor
+**Manual:**
+1. Copy the contents of `feelloo-dashboard.yaml`
+2. Go to your dashboard → **Edit Dashboard**
+3. Click **⋮** → **Raw configuration editor**
+4. Paste the YAML
 5. Click **Save**
 
-### Method 2: Create a new dashboard
-
-1. Go to **Settings** → **Dashboards**
-2. Click **Add Dashboard**
-3. Select **Web page** or create a **New dashboard from scratch**
-4. In the raw configuration, paste the contents of `feelloo-dashboard.yaml`
-
-### Step 2: Configure the Map
+### Step 3: Configure the Map
 
 The dashboard uses a placeholder `{cat_name}` for the map card. You need to replace it with your cat's entity ID.
 
