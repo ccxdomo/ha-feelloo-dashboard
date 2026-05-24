@@ -67,6 +67,28 @@ Install these custom cards via HACS before using this dashboard:
 3. Select **Web page** or create a **New dashboard from scratch**
 4. In the raw configuration, paste the contents of `feelloo-dashboard.yaml`
 
+### Step 2: Configure the Map
+
+The dashboard uses a placeholder `{cat_name}` for the map card. You need to replace it with your cat's entity ID.
+
+1. Go to **Developer Tools** → **States**
+2. Find your cat's device tracker entity (e.g., `device_tracker.pinceau_name`)
+3. Note the slug part (e.g., `pinceau`)
+4. Edit the dashboard YAML and replace `{cat_name}` with your cat's slug
+
+**Example:**
+```yaml
+entities:
+  - entity: device_tracker.pinceau_name
+```
+
+For multiple cats, add more lines:
+```yaml
+entities:
+  - entity: device_tracker.pinceau_name
+  - entity: device_tracker.tibounet_name
+```
+
 ## Customization
 
 ### Cat Images
