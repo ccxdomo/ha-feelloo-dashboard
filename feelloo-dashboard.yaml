@@ -5,19 +5,12 @@ views:
     icon: mdi:map-marker-radius
     badges: []
     cards:
-      - type: custom:auto-entities
-        card:
-          type: map
-          aspect_ratio: '16:9'
-          default_zoom: 18
-          hours_to_show: 24
-        card_param: entities
-        filter:
-          include:
-            - domain: device_tracker
-              integration: feelloo
-        sort:
-          method: name
+      - type: map
+        aspect_ratio: '16:9'
+        default_zoom: 18
+        hours_to_show: 24
+        entities:
+          - entity: device_tracker.{cat_name}_name
         card_mod:
           style: |
             ha-card {
