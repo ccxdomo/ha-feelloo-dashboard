@@ -48,18 +48,18 @@ views:
         sort:
           method: name
         exclude:
-          - entity_id: '*activite*'
-          - entity_id: '*repos*'
-          - entity_id: '*calme*'
-          - entity_id: '*actif*'
-          - entity_id: '*sorties*'
-          - entity_id: '*hebdo*'
-          - entity_id: '*mensuel*'
-          - entity_id: '*latitude*'
-          - entity_id: '*longitude*'
-          - entity_id: '*gps*'
-          - entity_id: '*last_seen*'
-          - entity_id: '*presence*'
+          - entity_id: 'activite'
+          - entity_id: 'repos'
+          - entity_id: 'calme'
+          - entity_id: 'actif'
+          - entity_id: 'sorties'
+          - entity_id: 'hebdo'
+          - entity_id: 'mensuel'
+          - entity_id: 'latitude'
+          - entity_id: 'longitude'
+          - entity_id: 'gps'
+          - entity_id: 'last_seen'
+          - entity_id: 'presence'
 
       - type: custom:auto-entities
         card:
@@ -73,13 +73,13 @@ views:
         sort:
           method: name
         exclude:
-          - entity_id: '*batterie*'
-          - entity_id: '*signal*'
-          - entity_id: '*latitude*'
-          - entity_id: '*longitude*'
-          - entity_id: '*gps*'
-          - entity_id: '*last_seen*'
-          - entity_id: '*presence*'
+          - entity_id: 'batterie'
+          - entity_id: 'signal'
+          - entity_id: 'latitude'
+          - entity_id: 'longitude'
+          - entity_id: 'gps'
+          - entity_id: 'last_seen'
+          - entity_id: 'presence'
 
       - type: custom:auto-entities
         card:
