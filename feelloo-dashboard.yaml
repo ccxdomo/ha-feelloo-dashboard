@@ -44,15 +44,18 @@ views:
                 - text-align: left
                 - margin-top: 4px
 
-          - type: map
-            aspect_ratio: '16:9'
-            default_zoom: 18
-            entities:
-              - entity: all
-                filter:
-                  include:
-                    - domain: device_tracker
-                      integration: feelloo
+          - type: custom:auto-entities
+            card:
+              type: map
+              aspect_ratio: '16:9'
+              default_zoom: 18
+            card_param: entities
+            filter:
+              include:
+                - domain: device_tracker
+                  integration: feelloo
+            sort:
+              method: name
             card_mod:
               style: |
                 ha-card {
@@ -64,7 +67,9 @@ views:
 
           - type: custom:auto-entities
             card:
-              type: vertical-stack
+              type: grid
+              columns: 1
+              square: false
             card_param: cards
             filter:
               include:
@@ -72,8 +77,7 @@ views:
                   integration: feelloo
                   options:
                     type: custom:button-card
-                    name: |
-                      [[[ return entity.attributes.friendly_name || entity.entity_id ]]]
+                    entity: this
                     show_name: true
                     show_icon: false
                     show_state: false
@@ -121,9 +125,9 @@ views:
                           var switchEntity = 'switch.' + slug + '_petite_souris';
                           var buttonEntity = 'button.' + slug + '_name_faire_sonner';
                           var html = '<div style="display:flex;gap:8px;margin-top:12px;">';
-                          html += '<a href="#" onclick="event.preventDefault();document.querySelector(\\'ha-more-info-dialog\\').showDialog({entityId:\\'' + switchEntity + '\\'});" style="flex:1;padding:10px;background:rgba(255,255,255,0.06);border-radius:12px;text-align:center;text-decoration:none;">';
+                          html += '<a href="#" onclick="event.preventDefault();document.querySelector(\'ha-more-info-dialog\').showDialog({entityId:\'' + switchEntity + '\'});" style="flex:1;padding:10px;background:rgba(255,255,255,0.06);border-radius:12px;text-align:center;text-decoration:none;">';
                           html += '<div style="font-size:20px;margin-bottom:4px;">🐭</div><div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);">Petite Souris</div></a>';
-                          html += '<a href="#" onclick="event.preventDefault();document.querySelector(\\'ha-more-info-dialog\\').showDialog({entityId:\\'' + buttonEntity + '\\'});" style="flex:1;padding:10px;background:rgba(255,255,255,0.06);border-radius:12px;text-align:center;text-decoration:none;">';
+                          html += '<a href="#" onclick="event.preventDefault();document.querySelector(\'ha-more-info-dialog\').showDialog({entityId:\'' + buttonEntity + '\'});" style="flex:1;padding:10px;background:rgba(255,255,255,0.06);border-radius:12px;text-align:center;text-decoration:none;">';
                           html += '<div style="font-size:20px;margin-bottom:4px;">🔔</div><div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);">Sonner</div></a>';
                           html += '</div>';
                           return html;
