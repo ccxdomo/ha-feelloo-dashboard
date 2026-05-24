@@ -112,15 +112,25 @@ views:
         filter:
           include:
             - domain: sensor
-              entity_id: '*activite*'
+              entity_id: '*_name_activite*'
             - domain: sensor
-              entity_id: '*repos*'
+              entity_id: '*_name_repos*'
             - domain: sensor
-              entity_id: '*calme*'
+              entity_id: '*_name_calme*'
             - domain: sensor
-              entity_id: '*actif*'
+              entity_id: '*_name_actif*'
             - domain: sensor
-              entity_id: '*sorties*'
+              entity_id: '*_nombre_de_sorties*'
+            - domain: sensor
+              entity_id: '*_repos_hebdo*'
+            - domain: sensor
+              entity_id: '*_calme_hebdo*'
+            - domain: sensor
+              entity_id: '*_actif_hebdo*'
+            - domain: sensor
+              entity_id: '*_repos_mensuel*'
+            - domain: sensor
+              entity_id: '*_actif_mensuel*'
         sort:
           method: name
 
@@ -132,10 +142,10 @@ views:
         filter:
           include:
             - domain: binary_sensor
-              entity_id: '*charge*'
+              entity_id: '*_name_en_charge*'
             - domain: binary_sensor
-              entity_id: '*batterie_faible*'
+              entity_id: '*_name_batterie_faible*'
             - domain: binary_sensor
-              entity_id: '*gateway*'
+              entity_id: '*_name_gateway_en_ligne*'
         sort:
           method: name
